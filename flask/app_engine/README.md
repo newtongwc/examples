@@ -16,3 +16,9 @@ Contents:
 * hello_web.py: starts a server which says hello in response to a
   browser request to /. This is intended to illustrate the basic anatomy of a
   Flask application.
+
+* extended_html.py: Returns a longer HTML marked-up text.
+
+* static_html: Returns various HTML pages served as static files, rather than being
+  hard-coded inside the Python file. Uses files in the static/ subdirectory.
+
