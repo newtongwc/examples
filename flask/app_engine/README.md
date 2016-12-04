@@ -6,6 +6,11 @@ dev_appserver.py script or via deployment on Google Cloud Platform. These files 
 track the ones in ../local, with slight modification that make them able to run
 in AppEngine.
 
+
+Before running or deploying one of these applications, you must install the dependencies named
+in its "requirements.txt" file using [pip](http://pip.readthedocs.io/en/stable/):
+    pip install -t lib -r requirements.txt
+
 Contents:
 
 * hello_web.py: starts a server which says hello in response to a
