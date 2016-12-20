@@ -22,3 +22,6 @@ Contents:
 * static_html: Returns various HTML pages served as static files, rather than being
   hard-coded inside the Python file. Uses files in the static/ subdirectory.
 
+* adventure: A trivial Flask app that only serves files by name from the static/
+  subdirectory. The program is called "adventure" because if you start at /adventure.html
+  you get a short text adventure sequence.
