@@ -27,3 +27,7 @@ Contents:
 
 * echo_web.py: Illustrates how to use Flask's variable rules in routing URLs to handlers
   that act differently depending on the URL.
+  
+* adventure.py: A trivial Flask app that only serves files by name from the static/
+  subdirectory. The program is called "adventure" because if you start at /adventure.html
+  you get a short text adventure sequence.
