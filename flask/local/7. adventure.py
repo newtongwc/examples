@@ -10,6 +10,6 @@ app = Flask('Adventure', static_url_path='')
 # instead (found in ./static/adventure.html)
 @app.route("/")
 def adventure():
-    return app.send_static_file('adventure.html')
+    return app.send_static_file(os.path.join('', 'adventure.html').replace('\\','/'))
 
 app.run()
