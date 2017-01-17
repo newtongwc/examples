@@ -1,7 +1,7 @@
 # This program gets ready to play hide and seek by counting up by fives.
 # It was written as a Daily Programming Exercise.
 
-# Optional: use to pause between counts
+# Use to pause between counts
 import time
 
 print "Now everybody try to find a good hiding place."
@@ -13,7 +13,7 @@ print
 
 for i in range(5, 105, 5):
     print "%d..." % i,
-    # Optional: pause between counts
+    # pause between counts
     time.sleep(0.5)
 
 print "\n"
