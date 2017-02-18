@@ -8,7 +8,6 @@ You might think that SQLite would be able to tell you this version
 information without having an actual database that it is connecting
 to, and that may be true. But here we create an empty database (with no
 defined schema) just so that we can connect to it and ask it for the version.
-
 """
 
 import sqlite3
