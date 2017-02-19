@@ -27,3 +27,8 @@ class BookCollection:
     def get_books_by_title(self, title):
         """Returns a sequence of all books with a matching title"""
         return []
+
+    def populate_with_development_data(self):
+        self.add_book(Book("Title1", "Author1"))
+        self.add_book(Book("Title2", "Author2"))
+

@@ -2,15 +2,20 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from book import Book
-from bookdb import InMemoryBookCollection
+
+# Choose one of these import statements, then construct the corresponding
+# collection type below.
+# from bookdb_memory import InMemoryBookCollection
+# from bookdb_sqlite import SQLiteBookCollection
+from bookdb_datastore import DatastoreBookCollection
 
 # The parameter static_url_path tells Flask where to look for the "static" directory.
 # Requests for paths not explicitly listed with @app.route() directives below will be
 # interpreted as requests for files from the "static" directory.
 app = Flask(__name__, static_url_path='')
-collection = InMemoryBookCollection()
-collection.add_book(Book("Title1", "Author1"))
-collection.add_book(Book("Title2", "Author2"))
+collection = DatastoreBookCollection()
+# Uncomment if you'd like the database to have some things in it already
+# collection.populate_with_development_data()
 
 
 # Tell Flask to point users to the home page if no path is given.

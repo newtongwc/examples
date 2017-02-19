@@ -1,3 +1,10 @@
+import sys
+
+sys.path.insert(1, '/Users/drm/Downloads/google-cloud-sdk/platform/google_appengine')
+sys.path.insert(1, '/Users/drm/Downloads/google-cloud-sdk/platform/google_appengine/lib/yaml/lib')
+sys.path.insert(1, '/Users/drm/PycharmProjects/examples/flask/app_engine/book_collection/lib')
+
+
 from google.appengine.ext import ndb
 from book import Book
 from bookdb import BookCollection
@@ -7,7 +14,7 @@ class DatastoreBook(ndb.Model):
     title = ndb.StringProperty()
     author = ndb.StringProperty()
 
-class DatastoreBookCollection:
+class DatastoreBookCollection(BookCollection):
     """An implementation of BookCollection that uses Google's Datastore"""
     def __init__(self):
         BookCollection.__init__(self)

@@ -1,6 +1,7 @@
 from book import Book
 from bookdb_memory import InMemoryBookCollection
 from bookdb_sqlite import SQLiteBookCollection
+from bookdb_datastore import DatastoreBookCollection
 
 import pytest
 import tempfile
