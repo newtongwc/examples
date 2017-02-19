@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block body %}
 {{preamble_text}}
+
 <table border="1" width="200">
     <tr>
         <th>Author</th>
         <th>Title</th>
     </tr>
-    <tr>
-        <td>{{author}}</td>
-        <td>{{title}}</td>
-    </tr>
+    {% for book in books %}
+      <tr>
+          <td>{{ book.author }}</td>
+          <td>{{ book.title }}</td>
+      </tr>
+    {% endfor %}
 </table>
 {% endblock %}
