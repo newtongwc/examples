@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+{{preamble_text}}
+<table border="1" width="200">
+    <th>
+        <td>Author</td>
+        <td>Title</td>
+    </th>
+    <tr>
+        <td>{{author}}</td>
+        <td>{{title}}</td>
+    </tr>
+</table>
+{% endblock %}

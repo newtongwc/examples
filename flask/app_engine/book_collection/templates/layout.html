@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>David's Book Collection</title>
+</head>
+<body>
+<div class=page>
+    <h1>David's Book Collection</h1>
+    {% block body %}{% endblock %}
+    {% block footer %}
+    <a href="/home">Home</a>
+    {% endblock %}
+</div>
+</body>
