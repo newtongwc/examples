@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
-
-Use this form to add a book to the collection.
-<form action="/add">
+<p>
+    {{preamble_text}}
+</p>
+<p>
+    Use this form to add a book to the collection.
+</p>
+<form action="/add" method="post">
     Title: <input type="text" name="title"/><br>
     Author: <input type="text" name="author"/><br>
     <input type="submit" value="Add book">
