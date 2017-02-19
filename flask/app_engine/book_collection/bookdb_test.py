@@ -10,7 +10,8 @@ def collection(request):
     if request.param == "in_memory":
         return InMemoryBookCollection()
     elif request.param == "sqlite":
-        return SQLiteBookCollection(None, ":memory:")
+        return SQLiteBookCollection(tempfile.gettempdir(), "test.db", new=True)
+
 
 def test_empty_collection(collection):
     assert len(collection) == 0
