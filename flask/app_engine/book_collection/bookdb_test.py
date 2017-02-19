@@ -1,5 +1,6 @@
 from book import Book
-from bookdb import InMemoryBookCollection, SQLiteBookCollection
+from bookdb_memory import InMemoryBookCollection
+from bookdb_sqlite import SQLiteBookCollection
 
 import pytest
 import tempfile
