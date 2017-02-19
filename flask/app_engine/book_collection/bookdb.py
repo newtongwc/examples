@@ -21,6 +21,9 @@ class BookCollection:
         """Returns a sequence of all books with a matching title"""
         return []
 
+    def __len__(self):
+        return 0
+
 
 class InMemoryBookCollection(BookCollection):
     """An implementation of BookCollection that keeps the books in local memory
