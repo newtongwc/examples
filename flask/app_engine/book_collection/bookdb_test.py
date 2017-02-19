@@ -1,13 +1,16 @@
 from book import Book
-from bookdb import InMemoryBookCollection
+from bookdb import InMemoryBookCollection, SQLiteBookCollection
 
 import pytest
+import tempfile
 
 
-@pytest.fixture
-def collection():
-    return InMemoryBookCollection()
-
+@pytest.fixture(params=["in_memory", "sqlite"])
+def collection(request):
+    if request.param == "in_memory":
+        return InMemoryBookCollection()
+    elif request.param == "sqlite":
+        return SQLiteBookCollection(None, ":memory:")
 
 def test_empty_collection(collection):
     assert len(collection) == 0
@@ -18,13 +21,18 @@ def test_add_book(collection):
     collection.add_book(a)
     assert len(collection) == 1
     assert a in collection
+
     a_copy = Book("TitleA", "AuthorA")
     assert a_copy in collection
+
     b = Book("TitleB", "AuthorB")
     collection.add_book(b)
     assert len(collection) == 2
     assert b in collection
     assert a in collection
+
+    collection.add_book(a_copy)
+    assert len(collection) == 2  # Hasn't changed, book already present
 
 
 def test_get_all_books(collection):
@@ -33,9 +41,11 @@ def test_get_all_books(collection):
     collection.add_book(a)
     collection.add_book(b)
     books = collection.get_all_books()
-    assert len(books) == 2
-    assert a in books
-    assert b in books
+    num_books = 0
+    for book in books:
+        num_books = num_books + 1
+        assert book in [a, b]
+    assert num_books == 2
 
 
 def test_get_books_by_author(collection):
@@ -44,10 +54,16 @@ def test_get_books_by_author(collection):
     collection.add_book(a)
     collection.add_book(b)
     matches = collection.get_books_by_author("AuthorA")
-    assert len(matches) == 1
-    assert a in matches
+    num_matches = 0
+    for book in matches:
+        num_matches = num_matches + 1
+        assert book in [a]
+    assert num_matches == 1
     matches = collection.get_books_by_author("AuthorC")
-    assert len(matches) == 0
+    num_matches = 0
+    for book in matches:
+        num_matches = num_matches + 1
+    assert num_matches == 0
 
 
 def test_get_books_by_title(collection):
@@ -56,10 +72,16 @@ def test_get_books_by_title(collection):
     collection.add_book(a)
     collection.add_book(b)
     matches = collection.get_books_by_title("TitleB")
-    assert len(matches) == 1
-    assert b in matches
-    matches = collection.get_books_by_author("TitleC")
-    assert len(matches) == 0
+    num_matches = 0
+    for book in matches:
+        num_matches = num_matches + 1
+        assert book in [b]
+    assert num_matches == 1
+    matches = collection.get_books_by_title("TitleC")
+    num_matches = 0
+    for book in matches:
+        num_matches = num_matches + 1
+    assert num_matches == 0
 
 
 pytest.main()
