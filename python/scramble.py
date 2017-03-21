@@ -3,7 +3,7 @@ import random
 print "Welcome to Word Scramble!\n\n"
 print "Try unscrambling these letters to make an english word.\n"
 
-words = ["apple", "banana", "pear", "apricot"]
+words = ["apple", "banana", "peach", "apricot"]
 
 while True:
   word = random.choice(words)
