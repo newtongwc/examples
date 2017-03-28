@@ -1,10 +1,10 @@
 import random
 
 class Question:
-  def __init__(self, query, top, bottom):
+  def __init__(self, query, best, worse):
       self.query = query
-      self.top = top
-      self.bottom = bottom
+      self.best = best
+      self.worse = worse
 
 questions = [
   Question("is there a law against", "cannibalism","flag burning"),
@@ -16,12 +16,12 @@ while True:
   print "Guess the more likely completion.\n"
   print "query: %s __________" % question.query
   if random.choice([True, False]):
-    answerA = question.top
-    answerB = question.bottom
+    answerA = question.best
+    answerB = question.worse
     correct = "A"
   else:
-    answerA = question.bottom
-    answerB = question.top
+    answerA = question.worse
+    answerB = question.best
     correct = "B"
 
   print "(A) %s" % answerA
@@ -36,4 +36,4 @@ while True:
   else:
     result = "Wrong!"
 
-  print "%s! It's (%s) %s." % (result, correct, question.top)
+  print "%s! It's (%s) %s.\n" % (result, correct, question.best)
