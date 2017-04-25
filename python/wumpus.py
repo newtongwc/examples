@@ -50,7 +50,7 @@ def print_status():
   print "Tunnels lead to %d\t%d\t%d" % (near[0], near[1], near[2])
   if near[0] in bat_locations or near[1] in bat_locations or near[2] in bat_locations:
     print "Bats nearby!"
-  if len(set.intersection(set(near), pit_locations)):
+  if near[0] in pit_locations or near[1] in pit_locations or near[2] in pit_locations:
     print "I feel a draft."
   if wumpus_location in near:
     print "I smell a Wumpus!"
@@ -97,10 +97,11 @@ def play_shoot():
   # on the path.
   while len(path) < num_rooms + 1:
     room = get_room()
+    # Forbid turning around and going back to the room the arrow just came from.
     if len(path) >= 2 and room == path[-2]:
       print "Arrows aren't that crooked -- try another room."
-      continue
-    path.append(room)
+    else
+      path.append(room)
   return resolve_arrow(path)
 
 # Returns True if an arrow in this room ends the game in any way.
@@ -172,6 +173,12 @@ def get_yes_no(message):
     choice = raw_input("%s (Y-N)" % message).upper()
   return choice == "Y"
 
+# Normally python would crash the program if we tried to convert
+# a string that doesn't represent an int (like "hello") to an int.
+# This returns 0 instead. 0 is not a valid option anywhere we call
+# safe_string_to_int (it's not a room or a number of rooms you can
+# shoot an arrow), so we'll end up asking the user to try again if
+# they enter anything that is not a number.
 def safe_string_to_int(s):
   try: 
     value = int(s)
@@ -201,6 +208,8 @@ def setup_map():
   neighbors[18] = [9,17,19]
   neighbors[19] = [11,18,20]
   neighbors[20] = [13,16,19]
+  # Room 0 isn't a real room, we just have it so we can use rooms #1-20
+  # as the real rooms.
   neighbors[0] = None
 
 def maybe_print_instructions():
@@ -215,10 +224,10 @@ know what a dodecahedron is, ask someone).
 
 HAZARDS:
 
-Bottomless pits - two rooms have bottomless pits in them if you go there,
+Bottomless pits - two rooms have bottomless pits in them. If you go there,
   you fall into the pit (& lose!)
 
-Super bats - two other rooms have super bats. if you go there, a bat grabs
+Super bats - two other rooms have super bats. If you go there, a bat grabs
   you and takes you to some other room at random (which might be
   troublesome).
     
