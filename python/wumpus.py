@@ -100,7 +100,7 @@ def play_shoot():
     # Forbid turning around and going back to the room the arrow just came from.
     if len(path) >= 2 and room == path[-2]:
       print "Arrows aren't that crooked -- try another room."
-    else
+    else:
       path.append(room)
   return resolve_arrow(path)
 
